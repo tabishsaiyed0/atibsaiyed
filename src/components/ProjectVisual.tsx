@@ -1,4 +1,4 @@
-import { Check, Webhook, Sparkles, Database, Mail, Clock } from 'lucide-react';
+import { Check, Sparkles, Database, Mail, Clock, MousePointerClick, Filter, ChevronRight, FileText, Briefcase, ClipboardCheck, Search, PhoneCall, Gem } from 'lucide-react';
 import type { Visual } from './projectData';
 
 function Browser({ url, children }: { url: string; children: React.ReactNode }) {
@@ -15,131 +15,249 @@ function Browser({ url, children }: { url: string; children: React.ReactNode }) 
 
 const Bar = ({ w, c = 'bg-foreground/10' }: { w: string; c?: string }) => <div className={`h-2.5 rounded-full ${c}`} style={{ width: w }} />;
 
-function Site() {
+function Sports() {
+  const steps: Array<[string, boolean]> = [
+    ['Registration confirmed', true],
+    ['Flights uploaded', true],
+    ['Room share preferences', false],
+  ];
   return (
-    <Browser url="clinic-example.com">
-      <div className="grid h-full grid-cols-2 gap-6 p-7">
-        <div className="flex flex-col justify-center gap-3">
-          <Bar w="40%" c="bg-primary/40" /><div className="h-5 w-11/12 rounded bg-foreground/80" /><div className="h-5 w-3/4 rounded bg-foreground/80" />
-          <Bar w="90%" /><Bar w="70%" />
-          <div className="mt-2 w-fit rounded-full bg-primary px-4 py-2 text-[11px] font-semibold text-primary-foreground">Book a visit</div>
+    <Browser url="travel-portal.example.com">
+      <div className="flex h-full">
+        <div className="hidden w-[26%] flex-col gap-1 border-r border-border bg-secondary p-4 sm:flex">
+          <p className="px-2 text-[9px] font-semibold uppercase tracking-wider text-muted-foreground">Teams</p>
+          {['Athletes', 'Participants', 'Operators'].map((t, i) => (
+            <span key={t} className={`rounded-md px-2 py-1.5 text-[11px] ${i === 0 ? 'bg-card font-semibold shadow-sm' : 'text-muted-foreground'}`}>{t}</span>
+          ))}
+          <div className="mt-auto rounded-lg bg-card p-3">
+            <p className="text-[9px] text-muted-foreground">Leads migrated</p>
+            <p className="text-lg font-bold">6,000+</p>
+          </div>
         </div>
-        <div className="rounded-xl border border-border bg-secondary p-4">
-          <p className="text-[11px] font-semibold">Pick a time</p>
-          <div className="mt-3 grid grid-cols-3 gap-2">
-            {['9:00', '9:30', '10:00', '11:00', '2:00', '3:30'].map((t, i) => (
-              <span key={t} className={`rounded-md py-1.5 text-center text-[10px] ${i === 2 ? 'bg-primary text-primary-foreground' : 'bg-card'}`}>{t}</span>
+        <div className="flex-1 p-3">
+          <div className="flex items-center justify-between gap-2">
+            <div>
+              <p className="text-[9px] text-muted-foreground">Barcelona Cup 2026</p>
+              <p className="text-sm font-bold">Your event checklist</p>
+            </div>
+            <span className="shrink-0 rounded-full bg-primary px-2.5 py-1 text-[9px] font-semibold text-primary-foreground">2 of 3 done</span>
+          </div>
+          <div className="mt-2 h-1.5 w-full rounded-full bg-secondary"><div className="h-1.5 w-2/3 rounded-full bg-primary" /></div>
+          <div className="mt-2 space-y-1.5">
+            {steps.map(([s, done]) => (
+              <div key={s} className="flex items-center gap-2.5 rounded-md border border-border px-2.5 py-1.5 text-[11px]">
+                <span className={`flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full ${done ? 'bg-primary text-primary-foreground' : 'border border-border'}`}>{done && <Check className="h-2.5 w-2.5" />}</span>
+                <span className={done ? 'text-muted-foreground line-through' : 'font-medium'}>{s}</span>
+              </div>
             ))}
           </div>
-          <div className="mt-4 rounded-md bg-card py-2 text-center text-[10px] font-semibold">Confirm booking</div>
         </div>
       </div>
     </Browser>
   );
 }
 
-function Landing() {
+function Jewelry() {
   return (
-    <Browser url="agent-example.com/valuation">
-      <div className="flex h-full flex-col items-center justify-center gap-3 bg-gradient-to-b from-accent/60 to-card p-7 text-center">
-        <Bar w="25%" c="bg-primary/40" /><div className="h-6 w-2/3 rounded bg-foreground/80" /><Bar w="50%" />
-        <div className="mt-3 flex w-4/5 gap-2 rounded-full border border-border bg-card p-1.5">
-          <span className="flex-1 px-3 py-1.5 text-left text-[11px] text-muted-foreground">Your property address</span>
-          <span className="rounded-full bg-foreground px-4 py-1.5 text-[11px] font-semibold text-background">Get valuation</span>
-        </div>
-        <div className="mt-4 grid w-full grid-cols-3 gap-3">{[0, 1, 2].map((i) => <div key={i} className="h-16 rounded-lg bg-foreground/[0.06]" />)}</div>
-      </div>
-    </Browser>
-  );
-}
-
-function Coach() {
-  return (
-    <Browser url="coach-example.com/packages">
-      <div className="grid h-full grid-cols-3 gap-3 p-6">
-        {['Starter', 'Growth', 'Premium'].map((p, i) => (
-          <div key={p} className={`flex flex-col gap-2 rounded-xl border p-4 ${i === 1 ? 'border-primary bg-accent/50' : 'border-border'}`}>
-            <p className="text-[11px] font-semibold">{p}</p>
-            <div className="h-5 w-1/2 rounded bg-foreground/70" />
-            {[0, 1, 2].map((k) => <div key={k} className="flex items-center gap-1.5"><Check className="h-3 w-3 text-primary" /><Bar w="70%" /></div>)}
-            <div className={`mt-auto rounded-full py-1.5 text-center text-[10px] font-semibold ${i === 1 ? 'bg-primary text-primary-foreground' : 'bg-secondary'}`}>Choose</div>
+    <Browser url="jewellery-example.com">
+      <div className="grid h-full grid-cols-2 gap-2 p-4">
+        <div className="flex flex-col justify-center gap-2.5">
+          <span className="w-fit rounded-full bg-accent px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-accent-foreground">AI try-on</span>
+          <div className="h-4 w-11/12 rounded bg-foreground/80" />
+          <div className="h-4 w-2/3 rounded bg-foreground/80" />
+          <Bar w="90%" /><Bar w="65%" />
+          <div className="mt-1 flex flex-wrap gap-1.5">
+            <span className="rounded-md bg-primary px-2.5 py-1.5 text-[10px] font-semibold text-primary-foreground">Try the preview</span>
+            <span className="rounded-md border border-border px-2.5 py-1.5 text-[10px] font-medium">Upload</span>
           </div>
-        ))}
+        </div>
+        <div className="grid grid-rows-2 gap-2">
+          <div className="relative overflow-hidden rounded-lg bg-gradient-to-br from-amber-200/60 via-amber-100/40 to-card ring-1 ring-border">
+            <span className="absolute left-2 top-2 rounded bg-card/90 px-1.5 py-0.5 text-[9px] font-semibold text-muted-foreground">Before</span>
+            <div className="flex h-full items-center justify-center"><Gem className="h-8 w-8 text-amber-600/60" /></div>
+          </div>
+          <div className="relative overflow-hidden rounded-lg bg-gradient-to-br from-primary/25 via-accent to-card ring-1 ring-primary/30">
+            <span className="absolute left-2 top-2 rounded bg-primary px-1.5 py-0.5 text-[9px] font-semibold text-primary-foreground">After · AI</span>
+            <div className="flex h-full items-center justify-center"><Sparkles className="h-8 w-8 text-primary/70" /></div>
+          </div>
+        </div>
       </div>
     </Browser>
   );
 }
 
-function N8n() {
-  const nodes = [
-    { icon: Webhook, label: 'New lead', x: 6, y: 42 },
-    { icon: Sparkles, label: 'AI reply', x: 30, y: 18 },
-    { icon: Database, label: 'Add to CRM', x: 30, y: 66 },
-    { icon: Mail, label: 'Send email', x: 56, y: 18 },
-    { icon: Clock, label: 'Wait 2 days', x: 56, y: 66 },
-    { icon: Mail, label: 'Follow-up', x: 80, y: 42 },
+function Law() {
+  const partners: Array<[string, string, string]> = [
+    ['R. Whitmore', 'Corporate', '92'],
+    ['S. Alvarez', 'Family', '87'],
+    ['J. Chen', 'Litigation', '81'],
   ];
-  const links = [[0, 1], [0, 2], [1, 3], [2, 4], [3, 5], [4, 5]];
+  const sources: Array<[string, number, number]> = [
+    ['Referrals', 68, 85],
+    ['Web', 42, 55],
+    ['Events', 27, 35],
+    ['Other', 14, 18],
+  ];
   return (
-    <div className="relative h-full w-full bg-secondary [background-image:radial-gradient(hsl(var(--foreground)/0.12)_1px,transparent_1px)] [background-size:18px_18px]">
-      <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-        {links.map(([a, b]) => (
-          <path key={`${a}${b}`} d={`M${nodes[a].x + 13} ${nodes[a].y + 7} C ${nodes[a].x + 20} ${nodes[a].y + 7}, ${nodes[b].x - 6} ${nodes[b].y + 7}, ${nodes[b].x} ${nodes[b].y + 7}`}
-            fill="none" stroke="hsl(var(--primary))" strokeOpacity="0.55" strokeWidth="0.5" vectorEffect="non-scaling-stroke" style={{ strokeWidth: 1.5 }} />
-        ))}
-      </svg>
-      {nodes.map(({ icon: Icon, label, x, y }) => (
-        <div key={label + x} className="absolute flex w-[14%] min-w-[64px] flex-col items-center gap-1.5" style={{ left: `${x}%`, top: `${y}%` }}>
-          <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-card shadow-sm"><Icon className="h-5 w-5 text-primary" /></span>
-          <span className="whitespace-nowrap text-[10px] font-medium text-muted-foreground">{label}</span>
-        </div>
-      ))}
-      <span className="absolute left-4 top-4 rounded-md bg-card px-2.5 py-1 text-[10px] font-semibold shadow-sm">Workflow · Lead follow-up</span>
-    </div>
-  );
-}
-
-function AirtableGrid() {
-  const rows = [['Smith & Co', 'In progress', '$2,400'], ['Green Dental', 'Done', '$1,150'], ['Nova Realty', 'New', '$3,800'], ['Peak Fitness', 'In progress', '$920'], ['Lumen Studio', 'Done', '$1,600']];
-  const tone: Record<string, string> = { Done: 'bg-primary/15 text-primary', 'In progress': 'bg-amber-500/15 text-amber-700', New: 'bg-sky-500/15 text-sky-700' };
-  return (
-    <div className="flex h-full w-full flex-col bg-card">
-      <div className="flex items-center gap-4 border-b border-border bg-secondary px-4 py-2.5 text-[11px] font-semibold">
-        <span className="rounded-md bg-card px-2 py-1 shadow-sm">Jobs</span><span className="text-muted-foreground">Clients</span><span className="text-muted-foreground">Invoices</span>
+    <div className="flex h-full flex-col bg-card">
+      <div className="flex items-center justify-between border-b border-border bg-secondary px-4 py-2">
+        <div className="flex items-center gap-2 text-[11px] font-semibold"><Briefcase className="h-3.5 w-3.5 text-primary" /> Referral partners</div>
+        <span className="rounded bg-card px-2 py-0.5 text-[9px] font-semibold shadow-sm">AI profiled</span>
       </div>
-      <div className="grid grid-cols-[1.4fr_1fr_0.8fr] border-b border-border px-4 py-2 text-[10px] font-semibold uppercase tracking-wide text-muted-foreground"><span>Client</span><span>Status</span><span>Value</span></div>
-      {rows.map(([c, s, v]) => (
-        <div key={c} className="grid grid-cols-[1.4fr_1fr_0.8fr] items-center border-b border-border/70 px-4 py-2.5 text-[12px]">
-          <span className="font-medium">{c}</span><span><span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${tone[s]}`}>{s}</span></span><span>{v}</span>
+      <div className="grid flex-1 grid-cols-[1.35fr_1fr] overflow-hidden">
+        <div className="border-r border-border">
+          <div className="grid grid-cols-[1.4fr_1fr_0.5fr] px-4 py-1.5 text-[9px] font-semibold uppercase tracking-wide text-muted-foreground"><span>Attorney</span><span>Practice</span><span>Score</span></div>
+          {partners.map(([n, p, s]) => (
+            <div key={n} className="grid grid-cols-[1.4fr_1fr_0.5fr] items-center border-t border-border/70 px-4 py-2 text-[11px]">
+              <span className="truncate font-medium">{n}</span><span className="text-muted-foreground">{p}</span><span className="font-semibold text-primary">{s}</span>
+            </div>
+          ))}
+          <div className="m-3 flex items-center gap-2 rounded-lg bg-accent px-3 py-2">
+            <FileText className="h-4 w-4 shrink-0 text-primary" />
+            <div>
+              <p className="text-[10px] font-semibold">Booklet generated</p>
+              <p className="text-[9px] text-muted-foreground">24 profiles · client-ready PDF</p>
+            </div>
+          </div>
         </div>
-      ))}
-      <p className="px-4 py-2 text-[10px] text-muted-foreground">Sample data</p>
+        <div className="p-3">
+          <p className="text-[10px] font-semibold">Matters by lead source</p>
+          <div className="mt-2 space-y-1.5">
+            {sources.map(([s, v, w]) => (
+              <div key={s}>
+                <div className="flex justify-between text-[9px] text-muted-foreground"><span>{s}</span><span>{v}</span></div>
+                <div className="mt-0.5 h-1.5 rounded-full bg-secondary"><div className="h-1.5 rounded-full bg-primary" style={{ width: `${w}%` }} /></div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-2 rounded-lg border border-border p-2">
+            <p className="text-[9px] text-muted-foreground">Research time</p>
+            <p className="text-sm font-bold">−10 hrs/week</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
 
-function Portal() {
-  const steps = [['Welcome call booked', true], ['Contract signed', true], ['Upload documents', false], ['Kick-off meeting', false]] as const;
+function Reports() {
+  const bars: Array<[string, number]> = [['New leads', 72], ['Viewings', 38], ['Deals closed', 24]];
+  const rows: Array<[string, string, string]> = [
+    ['Contacts', '12,480', 'Matched'],
+    ['Deals', '3,240', 'Matched'],
+    ['Properties', '8,910', '2 flagged'],
+    ['Invoices', '5,102', 'Matched'],
+  ];
   return (
-    <Browser url="portal.example.com">
-      <div className="p-7">
-        <p className="text-[11px] text-muted-foreground">Welcome back</p>
-        <div className="mt-1 h-5 w-1/2 rounded bg-foreground/80" />
-        <div className="mt-4 h-2 w-full rounded-full bg-secondary"><div className="h-2 w-1/2 rounded-full bg-primary" /></div>
-        <div className="mt-5 space-y-2.5">
-          {steps.map(([s, done]) => (
-            <div key={s} className="flex items-center gap-3 rounded-lg border border-border px-3 py-2 text-[12px]">
-              <span className={`flex h-4 w-4 items-center justify-center rounded-full ${done ? 'bg-primary text-primary-foreground' : 'border border-border'}`}>{done && <Check className="h-3 w-3" />}</span>
-              <span className={done ? 'text-muted-foreground line-through' : 'font-medium'}>{s}</span>
+    <div className="grid h-full grid-cols-2 gap-2 bg-secondary p-3">
+      <div className="flex flex-col rounded-xl border border-border bg-card p-3">
+        <div className="flex items-center gap-1.5"><Mail className="h-3.5 w-3.5 text-primary" /><p className="text-[10px] font-semibold">Weekly report</p></div>
+        <p className="mt-1.5 text-[9px] text-muted-foreground">Mon 07:00 · sent to 4 people</p>
+        <div className="mt-3 space-y-2">
+          {bars.map(([l, v]) => (
+            <div key={l}>
+              <div className="flex justify-between text-[9px] text-muted-foreground"><span>{l}</span><span>{v}</span></div>
+              <div className="mt-0.5 h-1.5 rounded-full bg-secondary"><div className="h-1.5 rounded-full bg-primary" style={{ width: `${v}%` }} /></div>
             </div>
           ))}
         </div>
+        <span className="mt-auto inline-flex w-fit items-center gap-1 rounded-full bg-accent px-2 py-1 text-[9px] font-semibold text-accent-foreground"><Check className="h-2.5 w-2.5" /> Automated</span>
+      </div>
+      <div className="flex flex-col rounded-xl border border-border bg-card p-3">
+        <div className="flex items-center gap-1.5"><ClipboardCheck className="h-3.5 w-3.5 text-primary" /><p className="text-[10px] font-semibold">Migration QA</p></div>
+        <p className="mt-1.5 text-[9px] text-muted-foreground">Source vs destination</p>
+        <div className="mt-3 space-y-1.5">
+          {rows.map(([n, c, s]) => (
+            <div key={n} className="flex items-center justify-between gap-1 rounded-md border border-border px-1.5 py-1.5 text-[8px]">
+              <span className="truncate font-medium">{n} <span className="text-muted-foreground">{c}</span></span>
+              <span className={`shrink-0 rounded-full px-1.5 py-0.5 font-semibold ${s === 'Matched' ? 'bg-primary/15 text-primary' : 'bg-amber-500/15 text-amber-700'}`}>{s}</span>
+            </div>
+          ))}
+        </div>
+        <div className="mt-auto rounded-md bg-secondary px-2 py-1.5 text-[9px]"><span className="font-semibold">−70%</span> manual entry</div>
+      </div>
+    </div>
+  );
+}
+
+function Scraper() {
+  const listings: Array<[string, string, string, string]> = [
+    ['Gothic Quarter', '2BR', '€148', '91%'],
+    ['Gràcia', '1BR', '€112', '94%'],
+    ['Poblenou', '3BR', '€205', '79%'],
+  ];
+  return (
+    <Browser url="market-scan.example.com">
+      <div className="flex h-full flex-col p-3.5">
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex items-center gap-1.5"><Search className="h-3.5 w-3.5 text-primary" /><p className="text-[11px] font-semibold">Airbnb market scan</p></div>
+          <div className="flex gap-1">{['1BR', '2BR', '3BR'].map((t, i) => <span key={t} className={`rounded px-1.5 py-0.5 text-[8px] font-semibold ${i === 1 ? 'bg-primary text-primary-foreground' : 'bg-secondary text-muted-foreground'}`}>{t}</span>)}</div>
+        </div>
+        <div className="mt-2.5 grid grid-cols-[1.4fr_0.6fr_0.7fr_0.6fr] border-y border-border py-1 text-[8px] font-semibold uppercase tracking-wide text-muted-foreground">
+          <span>Area</span><span>Beds</span><span>Nightly</span><span>Occ.</span>
+        </div>
+        {listings.map(([a, b, c, d]) => (
+          <div key={a} className="grid grid-cols-[1.4fr_0.6fr_0.7fr_0.6fr] items-center border-b border-border/60 py-1 text-[10px]">
+            <span className="truncate font-medium">{a}</span><span className="text-muted-foreground">{b}</span><span className="font-semibold">{c}</span><span>{d}</span>
+          </div>
+        ))}
+        <p className="mt-1 text-[8px] text-muted-foreground">+ 312 more listings scanned</p>
+        <div className="mt-auto flex items-center gap-2 rounded-lg bg-accent px-2.5 py-1.5">
+          <PhoneCall className="h-3.5 w-3.5 shrink-0 text-primary" />
+          <div className="flex-1">
+            <p className="text-[9px] font-semibold">Call summary saved</p>
+            <p className="truncate text-[8px] text-muted-foreground">No-show flagged · notes in Airtable + Drive</p>
+          </div>
+          <span className="shrink-0 rounded-full bg-primary/15 px-1.5 py-0.5 text-[8px] font-semibold text-primary">Auto</span>
+        </div>
       </div>
     </Browser>
   );
 }
 
-const map = { website: Site, landing: Landing, coach: Coach, n8n: N8n, airtable: AirtableGrid, portal: Portal };
+function Email() {
+  const steps = [
+    { icon: MousePointerClick, label: 'SendGrid', note: 'click events' },
+    { icon: Filter, label: 'Dedupe', note: 'by message ID' },
+    { icon: Database, label: 'Airtable', note: 'contacts' },
+  ];
+  return (
+    <Browser url="campaign-reporting.example.com">
+      <div className="flex h-full flex-col p-3.5">
+        <div className="flex items-center justify-between">
+          <p className="text-[11px] font-semibold">Click attribution pipeline</p>
+          <span className="rounded-full bg-accent px-2 py-0.5 text-[8px] font-semibold text-accent-foreground">Weekly</span>
+        </div>
+        <div className="mt-2.5 flex items-center gap-1">
+          {steps.map(({ icon: Icon, label, note }, i) => (
+            <div key={label} className="flex flex-1 items-center gap-1">
+              <div className="flex flex-1 flex-col items-center gap-0.5 rounded-lg border border-border bg-card p-1.5 text-center">
+                <Icon className="h-3.5 w-3.5 text-primary" />
+                <span className="text-[9px] font-semibold">{label}</span>
+                <span className="text-[8px] text-muted-foreground">{note}</span>
+              </div>
+              {i < steps.length - 1 && <ChevronRight className="h-3 w-3 shrink-0 text-muted-foreground" />}
+            </div>
+          ))}
+        </div>
+        <div className="mt-2.5 grid grid-cols-3 gap-1.5">
+          {[['Clicks', '4,218'], ['Matched', '98.6%'], ['Dupes', '1,204']].map(([l, v]) => (
+            <div key={l} className="rounded-lg bg-card p-1.5 text-center ring-1 ring-border">
+              <p className="text-[8px] uppercase tracking-wide text-muted-foreground">{l}</p>
+              <p className="text-sm font-bold">{v}</p>
+            </div>
+          ))}
+        </div>
+        <div className="mt-auto flex items-center gap-2 rounded-lg bg-accent px-2.5 py-1.5">
+          <Clock className="h-3.5 w-3.5 shrink-0 text-primary" />
+          <p className="text-[9px] font-semibold">50 hrs/week of manual reporting removed</p>
+        </div>
+      </div>
+    </Browser>
+  );
+}
+
+const map = { sports: Sports, jewelry: Jewelry, law: Law, reports: Reports, scraper: Scraper, email: Email };
 
 export default function ProjectVisual({ kind }: { kind: Visual }) {
   const C = map[kind];
