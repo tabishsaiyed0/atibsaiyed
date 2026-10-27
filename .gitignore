@@ -1,0 +1,9 @@
+﻿node_modules
+dist
+.env
+.env.*
+*.tsbuildinfo
+__zite__*
+.npmrc
+.DS_Store
+Thumbs.db
