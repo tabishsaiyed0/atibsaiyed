@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { MotionConfig } from 'framer-motion';
 import { Toaster } from '@project/components/ui/sonner';
+import { Analytics } from '@vercel/analytics/react';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
 import ToolsStrip from './components/ToolsStrip';
@@ -30,6 +31,7 @@ export default function App() {
         </main>
         <Footer />
         <Toaster />
+        <Analytics />
       </div>
     </MotionConfig>
   );
