@@ -24,14 +24,14 @@ function Sports() {
   return (
     <Browser url="travel-portal.example.com">
       <div className="flex h-full">
-        <div className="hidden w-[26%] flex-col gap-1 border-r border-border bg-secondary p-4 sm:flex">
+        <div className="hidden w-[26%] shrink-0 flex-col gap-1 border-r border-border bg-secondary p-4 sm:flex">
           <p className="px-2 text-[9px] font-semibold uppercase tracking-wider text-muted-foreground">Teams</p>
           {['Athletes', 'Participants', 'Operators'].map((t, i) => (
             <span key={t} className={`rounded-md px-2 py-1.5 text-[11px] ${i === 0 ? 'bg-card font-semibold shadow-sm' : 'text-muted-foreground'}`}>{t}</span>
           ))}
-          <div className="mt-auto rounded-lg bg-card p-3">
-            <p className="text-[9px] text-muted-foreground">Leads migrated</p>
-            <p className="text-lg font-bold">6,000+</p>
+          <div className="mt-auto min-w-0 rounded-lg bg-card p-2.5">
+            <p className="text-[9px] leading-tight text-muted-foreground">Leads migrated</p>
+            <p className="whitespace-nowrap text-sm font-bold leading-tight">6,000+</p>
           </div>
         </div>
         <div className="flex-1 p-3">

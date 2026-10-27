@@ -1,13 +1,13 @@
 import { useRef, useState } from 'react';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import { Maximize2, TrendingUp, BadgeCheck } from 'lucide-react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@project/components/ui/dialog';
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@project/components/ui/dialog';
 import Reveal, { ease } from './Reveal';
 import ProjectVisual from './ProjectVisual';
 import { projects, type Project } from './projectData';
 
 function Tag({ p }: { p: Project }) {
-  return <span className="rounded-md bg-accent px-2 py-0.5 text-[10px] font-semibold tracking-wider text-accent-foreground">{p.category.toUpperCase()} · CASE STUDY</span>;
+  return <span className="rounded-md bg-accent px-2 py-0.5  font-semibold tracking-wider text-accent-foreground">{p.category.toUpperCase()} · CASE STUDY</span>;
 }
 
 function Client({ p, className = '' }: { p: Project; className?: string }) {
@@ -34,23 +34,48 @@ function ResultPill({ p }: { p: Project }) {
 function Details({ p, onClose }: { p: Project | null; onClose: () => void }) {
   return (
     <Dialog open={!!p} onOpenChange={(o) => !o && onClose()}>
-      <DialogContent className="max-h-[90vh] max-w-2xl overflow-y-auto">
+      <DialogContent className="block w-[calc(100%-2rem)] max-w-4xl gap-0 overflow-hidden rounded-3xl p-0 sm:rounded-3xl">
         {p && (
-          <>
-            <div className="aspect-[16/10] overflow-hidden rounded-xl border border-border"><ProjectVisual kind={p.visual} /></div>
-            <DialogHeader>
-              <div><Tag p={p} /></div>
-              <Client p={p} className="mt-3" />
-              <DialogTitle className="font-display text-3xl font-bold">{p.title}</DialogTitle>
-              <DialogDescription className="text-base leading-relaxed">{p.summary} {p.story}</DialogDescription>
-            </DialogHeader>
-            <div className="grid gap-3 sm:grid-cols-2">
-              <p className="rounded-xl bg-accent p-4 text-sm text-accent-foreground"><span className="font-semibold text-primary">Result: </span>{p.result}</p>
-              <p className="rounded-xl bg-secondary p-4 text-sm"><span className="font-semibold text-primary">The problem: </span>{p.goal}</p>
+          <div className="max-h-[90vh] overflow-y-auto">
+            <div className="grid min-w-0 lg:grid-cols-[0.95fr_1fr]">
+              <div className="hidden min-w-0 items-center justify-center border-b border-border bg-secondary p-4 sm:p-6 min-[360px]:flex lg:border-b-0 lg:border-r">
+                <div className="aspect-auto min-h-[300px] w-full max-w-md overflow-hidden rounded-xl border border-border bg-card shadow-sm sm:aspect-[4/3] sm:min-h-0">
+                  <ProjectVisual kind={p.visual} />
+                </div>
+              </div>
+              <div className="flex min-w-0 flex-col gap-4 p-5 sm:p-6 md:p-7">
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 pr-8">
+                  <Tag p={p} />
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">{p.client}</span>
+                </div>
+                <DialogTitle className="font-display text-2xl font-bold leading-tight sm:text-[2rem]">{p.title}</DialogTitle>
+                <DialogDescription asChild>
+                  <div className="space-y-2.5">
+                    <p className="text-base font-medium leading-snug text-foreground">{p.summary}</p>
+                    <p className="text-sm leading-relaxed text-muted-foreground">{p.story}</p>
+                  </div>
+                </DialogDescription>
+                <div className="grid gap-2.5 sm:grid-cols-2">
+                  <div className="rounded-xl bg-accent p-3.5 text-sm text-accent-foreground">
+                    <p className="text-[10px] font-semibold uppercase tracking-wider text-primary">Result</p>
+                    <p className="mt-1 font-semibold leading-snug">{p.result}</p>
+                  </div>
+                  <div className="rounded-xl bg-secondary p-3.5 text-sm">
+                    <p className="text-[10px] font-semibold uppercase tracking-wider text-primary">The problem</p>
+                    <p className="mt-1 leading-snug">{p.goal}</p>
+                  </div>
+                </div>
+                <div>
+                  <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Stack</p>
+                  <div className="mt-2 flex flex-wrap gap-1.5">
+                    {p.highlights.map((h) => <span key={h} className="rounded-md border border-border px-2.5 py-1 text-xs text-muted-foreground">{h}</span>)}
+                  </div>
+                </div>
+                <p className="text-[11px] leading-relaxed text-muted-foreground">Client names withheld. Figures measured during delivery or reported by the client.</p>
+                <a href="#contact" onClick={onClose} className="mt-auto inline-flex w-fit items-center gap-1.5 rounded-lg bg-foreground px-4 py-2 text-sm font-semibold text-background transition-transform hover:-translate-y-0.5">Start a project like this →</a>
+              </div>
             </div>
-            <Chips p={p} />
-            <p className="text-xs text-muted-foreground">Client names withheld. Figures measured during delivery or reported by the client.</p>
-          </>
+          </div>
         )}
       </DialogContent>
     </Dialog>
@@ -84,7 +109,7 @@ function Desktop({ onOpen }: { onOpen: (p: Project) => void }) {
             </AnimatePresence>
             <div className="mt-10 flex gap-2">
               {projects.map((_, i) => (
-                <span key={i} className={`h-1 rounded-full transition-all duration-500 ${i === active ? 'w-10 bg-primary' : 'w-6 bg-foreground/15'}`} />
+                <span key={i} className={`h-1 rounded-lg transition-all duration-500 ${i === active ? 'w-10 bg-primary' : 'w-6 bg-foreground/15'}`} />
               ))}
             </div>
           </div>
@@ -103,7 +128,7 @@ function Desktop({ onOpen }: { onOpen: (p: Project) => void }) {
               >
                 <ProjectVisual kind={proj.visual} />
                 <span className="absolute inset-0 flex items-center justify-center bg-foreground/0 transition-colors duration-300 group-hover:bg-foreground/25">
-                  <span className="flex translate-y-3 items-center gap-2 rounded-full bg-background px-5 py-2.5 text-sm font-semibold opacity-0 shadow-md transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                  <span className="flex translate-y-3 items-center gap-2 rounded-lg bg-background px-5 py-2.5 text-sm font-semibold opacity-0 shadow-md transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                     <Maximize2 className="h-4 w-4" /> View details
                   </span>
                 </span>
@@ -145,7 +170,7 @@ export default function Projects() {
       <Reveal className="mx-auto max-w-6xl px-5 md:px-8">
         <h2 className="text-5xl font-extrabold md:text-6xl">Selected Projects<span className="text-primary">.</span></h2>
         <p className="mt-3 text-lg text-muted-foreground">Real client systems, in production. Names withheld; results aren't.</p>
-        <a href="https://www.upwork.com/freelancers/~01de6a6b2bb3d6551d" target="_blank" rel="noreferrer" className="mt-4 inline-flex items-center gap-2 rounded-full border border-border bg-background px-3.5 py-1.5 text-sm font-semibold transition-colors hover:border-primary hover:text-primary">
+        <a href="https://www.upwork.com/freelancers/~01de6a6b2bb3d6551d" target="_blank" rel="noreferrer" className="mt-4 inline-flex items-center gap-2 rounded-lg border border-border bg-background px-3.5 py-1.5 text-sm font-semibold transition-colors hover:border-primary hover:text-primary">
           <BadgeCheck className="h-4 w-4 text-primary" />
           Top Rated on Upwork · 20 projects delivered
         </a>
