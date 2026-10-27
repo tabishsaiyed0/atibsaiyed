@@ -142,9 +142,10 @@
   .link-underline:hover, .link-underline.is-on {
     background-size: 100% 2px;
   }
-  .roll { display: inline-flex; overflow: hidden; height: 1.25em; line-height: 1.25em; }
-  .roll > span { display: flex; flex-direction: column; transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1); }
-  .group:hover .roll > span { transform: translateY(-50%); }
+  .roll { display: inline-flex; align-items: flex-start; overflow: hidden; height: 1.5em; line-height: 1.5em; }
+  .roll > span { display: flex; flex: none; flex-direction: column; line-height: 1.5em; transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1); will-change: transform; }
+  .roll > span > span { display: block; height: 1.5em; }
+  .group:hover .roll > span, .group:focus-visible .roll > span { transform: translateY(-50%); }
   .marquee { animation: marquee 50s linear infinite; will-change: transform; }
   @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   @keyframes draw { to { stroke-dashoffset: 0; } }

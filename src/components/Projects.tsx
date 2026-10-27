@@ -7,7 +7,7 @@ import ProjectVisual from './ProjectVisual';
 import { projects, type Project } from './projectData';
 
 function Tag({ p }: { p: Project }) {
-  return <span className="rounded-md bg-accent px-2.5 py-1 text-[11px] font-semibold tracking-wider text-accent-foreground">{p.category.toUpperCase()} · EXAMPLE BUILD</span>;
+  return <span className="rounded-md bg-accent px-2 py-0.5 text-[10px] font-semibold tracking-wider text-accent-foreground">{p.category.toUpperCase()} · EXAMPLE</span>;
 }
 
 function Chips({ p }: { p: Project }) {
@@ -122,8 +122,8 @@ export default function Projects() {
   return (
     <section id="projects" className="scroll-mt-16 bg-secondary pb-12 pt-20">
       <Reveal className="mx-auto max-w-6xl px-5 md:px-8">
-        <h2 className="text-5xl font-extrabold md:text-6xl">Projects<span className="text-primary">.</span></h2>
-        <p className="mt-3 text-lg text-muted-foreground">Example builds showing the websites and automations I create. Scroll to explore.</p>
+        <h2 className="text-5xl font-extrabold md:text-6xl">Selected Projects<span className="text-primary">.</span></h2>
+        <p className="mt-3 text-lg text-muted-foreground">A few examples of what I can build for your business. Scroll to explore.</p>
       </Reveal>
       <Desktop onOpen={setOpen} />
       <Mobile onOpen={setOpen} />

@@ -1,7 +1,7 @@
 import { Mail, Linkedin } from 'lucide-react';
 import { RollButton } from './Reveal';
 
-export const CONTACT_EMAIL = 'hello@atib.dev';
+export const CONTACT_EMAIL = 'atibsaiyed2002@gmail.com';
 export const LINKEDIN_URL = 'https://www.linkedin.com/in/atibsaiyed';
 
 const socials = [
@@ -24,7 +24,7 @@ export default function ProfileCard() {
       </div>
       <div className="mt-3 overflow-hidden rounded-2xl">
         <img
-          src="https://images.fillout.com/orgid-575691/flowpublicid-bhsq7dhpvy/widgetid-default/cpqX1LboykED771xfMDrDA/pasted-image-1792942055804-6eaa2uj3.png"
+          src="atib.png"
           alt="Atib Saiyed"
           className="h-[clamp(220px,40vh,340px)] w-full object-cover object-top transition-transform duration-700 hover:scale-105"
         />
