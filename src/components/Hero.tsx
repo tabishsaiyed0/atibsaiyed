@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { RollButton, ease } from './Reveal';
 import ProfileCard from './ProfileCard';
 
-const words = ['websites', 'landing pages', 'booking systems', 'automatic follow-ups', 'AI assistants'];
+const words = ['websites', 'landing pages', 'booking systems', 'automations', 'AI assistants'];
 
 function RotatingText() {
   const [i, setI] = useState(0);
@@ -19,7 +19,7 @@ function RotatingText() {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -6 }}
         transition={{ duration: 0.3, ease }}
-        className="inline-block"
+        className="inline-block text-primary"
       >
         {words[i]}
       </motion.span>
@@ -39,20 +39,18 @@ export default function Hero() {
       <div className="grid w-full items-center gap-8 lg:grid-cols-5 lg:gap-12">
         <div className="lg:col-span-3">
           <h1 className="text-[2.4rem] font-extrabold leading-[1.08] sm:text-5xl lg:text-[3.6rem]">
-            <motion.span {...up(0.15)} className="block">More customers.</motion.span>
-            <motion.span {...up(0.32)} className="block">Less busywork.</motion.span>
-            <motion.span {...up(0.49)} className="block text-gradient">Zero tech headaches.</motion.span>
+            <motion.span {...up(0.2)} className="block">I build <RotatingText /></motion.span>
+            <motion.span {...up(0.32)} className="block">that win customers</motion.span>
+            <motion.span {...up(0.44)} className="block">and run themselves.</motion.span>
           </h1>
-          <motion.p {...up(0.6)} className="mt-4 text-lg font-bold sm:text-xl">
-            I build booking systems for small businesses.
-          </motion.p>
+          
           <motion.p {...up(0.68)} className="mt-2 max-w-xl leading-relaxed text-muted-foreground">
             I'm <span className="font-semibold text-foreground">Atib Saiyed</span>, a{' '}
             <span className="font-semibold text-accent-foreground">Website &amp; AI Automation Expert</span>. You run your business. I make sure it gets found, gets enquiries, and handles the boring jobs for you.
           </motion.p>
-          <motion.p {...up(0.76)} className="mt-3 text-sm font-medium text-muted-foreground sm:text-base">
+          {/*<motion.p {...up(0.76)} className="mt-3 text-sm font-medium text-muted-foreground sm:text-base">
             I build <RotatingText />
-          </motion.p>
+          </motion.p>*/}
           <motion.div {...up(0.84)} className="mt-5 flex flex-wrap gap-3">
             <RollButton href="#projects">View Projects</RollButton>
             <RollButton href="#contact" variant="outline">Contact</RollButton>
